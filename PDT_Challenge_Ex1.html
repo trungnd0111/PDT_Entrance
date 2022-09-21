@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const A = [0, 1, "2", "n", true];
+      const B = [1, 2, false, "n", "m", true];
+
+      //Bài 1
+      //Cách 1
+      var array1 = B.filter(function (item) {
+        return A.indexOf(item) == -1; //tìm vị trí các phần tử của B trong A nếu ko có => trả về phần tử ở vị trí -1 và filter các phần tử đó vào hàm array1
+      });
+
+      console.log(array1)
+      var array2 = A.filter(function (item) {
+        return B.indexOf(item) == -1; //tìm vị trí các phần tử của A trong B nếu ko có => trả về phần tử ở vị trí -1 và filter các phần tử đó vào hàm array2
+      });
+      console.log(array2)
+
+      let result = [].concat(array2, array1) // Gộp hàm và xuất ra kết quả
+      console.log("Kết quả cách làm thứ nhất: ", result);
+
+      //Cách 2
+      function result1(arr1, arr2) {
+          let arrayUniq = [];
+
+          // Tìm các phần tử duy nhất trong arr1 và đưa chúng vào kết quả
+          arr1.forEach((e) => (arr2.find((item) => item === e) ? null : arrayUniq.push(e)));
+          // Tìm các phần tử duy nhất trong arr2 và đưa chúng vào kết quả
+          arr2.forEach((e) => (arr1.find((item) => item === e) ? null : arrayUniq.push(e)));
+          return arrayUniq;
+      }
+
+      console.log("Kết quả cách làm thứ hai: ",result1(A, B));
+    </script>
+  </body>
+</html>

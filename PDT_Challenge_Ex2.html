@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const X = [
+        {
+          name: "this",
+          age: 33,
+          IQ: 100,
+        },
+        {
+          name: "is",
+          age: 26,
+          IQ: 120,
+        },
+        {
+          name: "a",
+          age: 19,
+          IQ: 160,
+        },
+        {
+          name: "simple",
+          age: 24,
+          IQ: 100,
+        },
+        {
+          name: "test",
+          age: 26,
+          IQ: 115,
+        },
+      ];
+      //Ex2.1
+      function compare(a, b) { //callback function của hàm sort dùng để quyết định 
+                              // thứ tự sắp xếp của các phần tử trong mảng
+        if (a.age < b.age) {
+          return -1;
+        }
+        //trả về <0 thì a sẽ được sắp xếp ở trước b
+
+        if (a.age > b.age) {
+          return 1;
+        }
+        //trả về >0 thì a sẽ được sắp xếp ở sau b
+        if (a.age == b.age) {
+          if (a.IQ > b.IQ) {
+            return -1;
+          }
+          if (a.IQ < b.IQ) {
+            return 1;
+          }
+          if (a.IQ == b.IQ) {
+            if (a.name < b.name) {
+              return -1;
+            }
+            if (a.name > b.name) {
+              return 1;
+            }
+            return 0;
+          }
+        }
+      }
+      const Y = X.slice(); //clone mảng X
+      Y.sort(compare);  //trả về một mảng đã được sắp xếp
+      console.log(X);
+      console.log("Mảng sắp xếp theo Ex2.1", Y);
+      // Ex2.2
+      //tạo hàm Z để gắn kết quả
+      const Z = []
+      X.map(function(xItem){ //duyệt mảng X theo từng phần tử
+        Y.map(function(yItem, yIndex){ //duyệt mảng Y theo từng phần tử, yIndex để gắn rank
+          if(xItem.name === yItem.name){ //xét điều kiện name bằng nhau
+            return Z.push({name: xItem.name, rank: yIndex+1}) //gắn phần tử vào hàm Z
+          }
+        });
+      });
+      console.log("Mảng theo yêu cầu Ex2.2", Z)
+    </script>
+  </body>
+</html>
